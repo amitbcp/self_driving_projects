@@ -12,7 +12,7 @@ class Vocabulary(object):
         start_word="<start>",
         end_word="<end>",
         unk_word="<unk>",
-        annotations_file='../cocoapi/annotations/captions_train2014.json',
+        annotations_file='./coco/annotations/captions_train2014.json',
         vocab_from_file=False):
         """Initialize the vocabulary.
         Args:
@@ -70,6 +70,7 @@ class Vocabulary(object):
 
     def add_captions(self):
         """Loop over training captions and add all tokens to the vocabulary that meet or exceed the threshold."""
+        print(self.annotations_file)
         coco = COCO(self.annotations_file)
         counter = Counter()
         ids = coco.anns.keys()
