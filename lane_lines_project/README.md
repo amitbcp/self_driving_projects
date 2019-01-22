@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# self-driving-car-projects
-This Repository contains the projects required to complete the Self-Driving Car Nanodegree Program from Udacity
-=======
 # **Finding Lane Lines on the Road** 
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
@@ -58,4 +54,3 @@ A browser window will appear showing the contents of the current directory.  Cli
 ## How to write a README
 A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
 
->>>>>>> d9a378180f0acb27cb19fb9ab278249c3cd5f518
