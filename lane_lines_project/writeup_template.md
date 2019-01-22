@@ -6,8 +6,9 @@ The goals / steps of this project are the following:
 
 
 [//]: # (Image References)
-
 [image1]: ./examples/grayscale.jpg "Grayscale"
+[image2]: ./test_images/solidWhiteCurve.jpg "Original Image"
+[image3]: ./test_images_output/solidWhiteCurve.jpg "Lane Detected Image"
 
 ---
 
@@ -38,7 +39,8 @@ The Lane Line detector pipeline was implemented based on the following :
   10. Plot the lines over the image to get the Lane Lines
     
   
-![alt text][image1]
+![alt text][image2]
+![alt text][image3]
 
 
 ### 2. Identify potential shortcomings with your current pipeline
