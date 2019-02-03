@@ -16,12 +16,28 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/undistort_output.png "Undistorted"
-[image2]: ./test_images/test1.jpg "Road Transformed"
-[image3]: ./examples/binary_combo_example.jpg "Binary Example"
-[image4]: ./examples/warped_straight_lines.jpg "Warp Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
+[image1]: ./output_images/calibrated.png "Calibration Chessboard Corners"
+[image2]: ./output_images/undistorted.png "Undistorted Image"
+[image3]: ./output_images/region_of_interest.png "Region of Interest"
+[image4]: ./output_images/sobel_x.png "Sobel-X Filter Image"
+[image5]: ./output_images/sobel_y.png "Sobel-Y Filter Image"
+[image6]: ./output_images/gradient_magnitude.png "Gradient Magnitude Image"
+[image7]: ./output_images/gradient_direction.png "Gradient Direction Image"
+[image8]: ./output_images/hls_color.png "HLS Color Space"
+[image9]: ./output_images/luv_lab_color.png "LUV & Lab Color Spaces"
+[image10]: ./output_images/all_color_space.png "All Color Spaces"
+[image11]: ./output_images/combined_threshold.png "Pre-processed Binary Threshold Image"
+[image12]: ./output_images/birds_eye_view.png "Warped Image"
+[image13]: ./output_images/histogram.png "Histogram"
+[image14]: ./output_images/detect_lines.png "Detect Lines Output"
+[image15]: ./output_images/similar_detected_lines.png "Similar Detected Lines Output"
+[image16]: ./output_images/draw_lane.png "Lane Drawn on the Frame"
+[image17]: ./output_images/draw_lane.png "Undistorted Image"
+[image18]: ./test_images/add_metrics.jpg "Metrics Added"
+[image19]: ./examples/binary_combo_example.jpg "Binary Example"
+[image20]: ./examples/warped_straight_lines.jpg "Warp Example"
+[image21]: ./examples/color_fit_lines.jpg "Fit Visual"
+[image22]: ./examples/example_output.jpg "Output"
 [video1]: ./project_video.mp4 "Video"
 
 
@@ -37,19 +53,14 @@ The code for this step is contained in the following funtion in the 3rd cell of 
 
 The  "object points", from the calibrate_camera() which will be the (x, y, z) coordinates of the chessboard corners in the world. Here,the assumption is tht the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time it successfully detects all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
 
+![alt text][image1]
+
 ### Step 2 : Undistort Images
 The code for this step is contained in the following funtion in the 5th cell of the IPython notebook located in "./examples/example.ipynb"
 * **undistort()** - This method remove distortion from images base on the calibrtion object points of the camera.
 
 The output `objpoints` and `imgpoints` is used tp compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function. The distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
 
-![alt text][image1]
-
-### Pipeline (single images)
-
-#### 1. Provide an example of a distortion-corrected image.
-
-To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
 ![alt text][image2]
 
 ### Step 3 : Transforms for Binary Threshold Images
@@ -65,14 +76,21 @@ Basic image transformation to detect/highlight the lane in the image/video were 
 The thresholds where defined manually after trying over multiple images and tuning them to get a better results.
 
 ![alt text][image3]
-
+![alt text][image4]
+![alt text][image5]
+![alt text][image6]
+![alt text][image7]
+![alt text][image8]
+![alt text][image9]
+![alt text][image10]
+![alt text][image11]
 ### Step 4 : Perspective Transform
 
 Perpective transform is performed over an undistorted image. In the project `birds_eye()` is used for the transformation. It take a couple of other inputs to determine whether to perform distortion or not, finally displaying the output.
 
 The source (`src_coordinates`) and destination (`dst_coordinates`) points were hardcoded in the project but provided good output/conversion of hte raw image. The warped counterpart to verify that the lines appear parallel in the warped image.
 
-![alt text][image4]
+![alt text][image12]
 
 ### Step 5 : Detect Lane Lines
 
@@ -84,7 +102,7 @@ The following functions were used for the following  -
 2. **`detect_lines()`** -  This function performs a blind search on the frame to detect the left/right lane
 3. **`detect_similar_lines()`** - This function relies on the previously detected lanes to find lane points in the vicinity. If not found they perform a blind search again using `detect_lines()`
 
-![alt text][image5]
+![alt text][image13]
 ### Step 6  :  Radius of Curvature
 This has been implemented in the `curvature_radius()` function of the project. Here we do the following steps -
 1. Reverse map the lane positions to match Top-to-Bottom Y points
@@ -107,6 +125,8 @@ The steps involved were -
 4. Adding the calculated metrics on the image.
 
 ![alt text][image6]
+![alt text][image13]
+![alt text][image13]
 
 ---
 
