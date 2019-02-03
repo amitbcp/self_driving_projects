@@ -33,11 +33,8 @@ The goals / steps of this project are the following:
 [image15]: ./output_images/similar_detected_lines.png "Similar Detected Lines Output"
 [image16]: ./output_images/draw_lane.png "Lane Drawn on the Frame"
 [image17]: ./output_images/draw_lane.png "Undistorted Image"
-[image18]: ./test_images/add_metrics.jpg "Metrics Added"
-[image19]: ./examples/binary_combo_example.jpg "Binary Example"
-[image20]: ./examples/warped_straight_lines.jpg "Warp Example"
+[image18]: ./test_images/add_metrics.png "Metrics Added"
 [image21]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image22]: ./examples/example_output.jpg "Output"
 [video1]: ./project_video.mp4 "Video"
 
 
