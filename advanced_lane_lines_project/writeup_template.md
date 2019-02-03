@@ -52,7 +52,9 @@ The code for this step is contained in the following funtion in the 3rd cell of 
 * **calibrate_camera()** - This method goes over multiple raw images to detect ChessBoard corner points used for calibration
 
 The  "object points", from the calibrate_camera() which will be the (x, y, z) coordinates of the chessboard corners in the world. Here,the assumption is tht the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time it successfully detects all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
-![alt text][image1]&nbsp;
+
+![alt text][image1]
+
 ### Step 2 : Undistort Images
 The code for this step is contained in the following funtion in the 5th cell of the IPython notebook located in "./examples/example.ipynb"
 * **undistort()** - This method remove distortion from images base on the calibrtion object points of the camera.
@@ -74,14 +76,21 @@ Basic image transformation to detect/highlight the lane in the image/video were 
 The thresholds where defined manually after trying over multiple images and tuning them to get a better results.
 
 ![alt text][image3]
-
+![alt text][image4]
+![alt text][image5]
+![alt text][image6]
+![alt text][image7]
+![alt text][image8]
+![alt text][image9]
+![alt text][image10]
+![alt text][image11]
 ### Step 4 : Perspective Transform
 
 Perpective transform is performed over an undistorted image. In the project `birds_eye()` is used for the transformation. It take a couple of other inputs to determine whether to perform distortion or not, finally displaying the output.
 
 The source (`src_coordinates`) and destination (`dst_coordinates`) points were hardcoded in the project but provided good output/conversion of hte raw image. The warped counterpart to verify that the lines appear parallel in the warped image.
 
-![alt text][image4]
+![alt text][image12]
 
 ### Step 5 : Detect Lane Lines
 
@@ -93,7 +102,7 @@ The following functions were used for the following  -
 2. **`detect_lines()`** -  This function performs a blind search on the frame to detect the left/right lane
 3. **`detect_similar_lines()`** - This function relies on the previously detected lanes to find lane points in the vicinity. If not found they perform a blind search again using `detect_lines()`
 
-![alt text][image5]
+![alt text][image13]
 ### Step 6  :  Radius of Curvature
 This has been implemented in the `curvature_radius()` function of the project. Here we do the following steps -
 1. Reverse map the lane positions to match Top-to-Bottom Y points
@@ -116,6 +125,8 @@ The steps involved were -
 4. Adding the calculated metrics on the image.
 
 ![alt text][image6]
+![alt text][image13]
+![alt text][image13]
 
 ---
 
