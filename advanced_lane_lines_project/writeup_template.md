@@ -103,6 +103,10 @@ The following functions were used for the following  -
 3. **`detect_similar_lines()`** - This function relies on the previously detected lanes to find lane points in the vicinity. If not found they perform a blind search again using `detect_lines()`
 
 ![alt text][image13]
+![alt text][image21]: ./examples/color_fit_lines.jpg "Fit Visual"
+![alt text][image14]
+![alt text][image15]
+
 ### Step 6  :  Radius of Curvature
 This has been implemented in the `curvature_radius()` function of the project. Here we do the following steps -
 1. Reverse map the lane positions to match Top-to-Bottom Y points
@@ -124,9 +128,8 @@ The steps involved were -
 3. Perform inverse Perspective Transform to get the original image from the warped image.
 4. Adding the calculated metrics on the image.
 
-![alt text][image6]
-![alt text][image13]
-![alt text][image13]
+![alt text][image16]
+![alt text][image18]
 
 ---
 
@@ -147,8 +150,6 @@ Here's a [link to my video result](./project_video.mp4)
 ---
 
 ### Discussion
-
-#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 #### Challenges Faced -
 
 1. With the challenge and harder challenge video, it pipeline performace was detected. This showed that the preprocessing values to do not hold true for under all circumstances. 
