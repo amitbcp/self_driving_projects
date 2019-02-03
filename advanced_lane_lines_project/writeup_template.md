@@ -16,12 +16,28 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/undistort_output.png "Undistorted"
-[image2]: ./test_images/test1.jpg "Road Transformed"
-[image3]: ./examples/binary_combo_example.jpg "Binary Example"
-[image4]: ./examples/warped_straight_lines.jpg "Warp Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
+[image1]: ./output_images/calibrated.png "Calibration Chessboard Corners"
+[image2]: ./output_images/undistorted.png "Undistorted Image"
+[image3]: ./output_images/region_of_interest.png "Region of Interest"
+[image4]: ./output_images/sobel_x.png "Sobel-X Filter Image"
+[image5]: ./output_images/sobel_y.png "Sobel-Y Filter Image"
+[image6]: ./output_images/gradient_magnitude.png "Gradient Magnitude Image"
+[image7]: ./output_images/gradient_direction.png "Gradient Direction Image"
+[image8]: ./output_images/hls_color.png "HLS Color Space"
+[image9]: ./output_images/luv_lab_color.png "LUV & Lab Color Spaces"
+[image10]: ./output_images/all_color_space.png "All Color Spaces"
+[image11]: ./output_images/combined_threshold.png "Pre-processed Binary Threshold Image"
+[image12]: ./output_images/birds_eye_view.png "Warped Image"
+[image13]: ./output_images/histogram.png "Histogram"
+[image14]: ./output_images/detect_lines.png "Detect Lines Output"
+[image15]: ./output_images/similar_detected_lines.png "Similar Detected Lines Output"
+[image16]: ./output_images/draw_lane.png "Lane Drawn on the Frame"
+[image17]: ./output_images/draw_lane.png "Undistorted Image"
+[image18]: ./test_images/add_metrics.jpg "Metrics Added"
+[image19]: ./examples/binary_combo_example.jpg "Binary Example"
+[image20]: ./examples/warped_straight_lines.jpg "Warp Example"
+[image21]: ./examples/color_fit_lines.jpg "Fit Visual"
+[image22]: ./examples/example_output.jpg "Output"
 [video1]: ./project_video.mp4 "Video"
 
 
@@ -36,6 +52,7 @@ The code for this step is contained in the following funtion in the 3rd cell of 
 * **calibrate_camera()** - This method goes over multiple raw images to detect ChessBoard corner points used for calibration
 
 The  "object points", from the calibrate_camera() which will be the (x, y, z) coordinates of the chessboard corners in the world. Here,the assumption is tht the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time it successfully detects all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
+![alt text][image1]
 
 ### Step 2 : Undistort Images
 The code for this step is contained in the following funtion in the 5th cell of the IPython notebook located in "./examples/example.ipynb"
@@ -43,13 +60,6 @@ The code for this step is contained in the following funtion in the 5th cell of 
 
 The output `objpoints` and `imgpoints` is used tp compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function. The distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
 
-![alt text][image1]
-
-### Pipeline (single images)
-
-#### 1. Provide an example of a distortion-corrected image.
-
-To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
 ![alt text][image2]
 
 ### Step 3 : Transforms for Binary Threshold Images
