@@ -141,8 +141,12 @@ The `ProcessImage` pipeline first evaluates whether or not a lane was detected i
 * This enables the pipeline/system to avoid scanning the entire image and build high-confidence (enabling more fault tolerant) as new location is based on the previous location.
 * When the pipeline fails to detect a lane pixel based on the previous detected pixels, it reverts back to blind search mode to scan the entire image for non-zero pixel via the image histogram.
 * This also boosts the time performance of or pipeline.
+* To improve stability, after a pre-defined number of frames , blind search is done again. Currently after 75 frames.
+* The Pipeline first tries to use only Color Spaces for lane detection, when it fails, it includes other transforms & thresholds.
 
-Here's a [link to my video result](./project_video.mp4)
+Proect Output are here -
+1. Project Solution Video - [Link](https://drive.google.com/file/d/1xHsZviWhZDr-SvlhvIdJbl041PT8JWKc/view?usp=sharing)
+2. Harder Challenge Solution Video - [Link](https://drive.google.com/file/d/1Zq9XWgD2VBH3kcojAVXBFVdC1UlnRFpU/view?usp=sharing)
 
 ---
 
