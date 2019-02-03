@@ -52,8 +52,7 @@ The code for this step is contained in the following funtion in the 3rd cell of 
 * **calibrate_camera()** - This method goes over multiple raw images to detect ChessBoard corner points used for calibration
 
 The  "object points", from the calibrate_camera() which will be the (x, y, z) coordinates of the chessboard corners in the world. Here,the assumption is tht the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time it successfully detects all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
-![alt text][image1]
-
+![alt text][image1]&nbsp;
 ### Step 2 : Undistort Images
 The code for this step is contained in the following funtion in the 5th cell of the IPython notebook located in "./examples/example.ipynb"
 * **undistort()** - This method remove distortion from images base on the calibrtion object points of the camera.
