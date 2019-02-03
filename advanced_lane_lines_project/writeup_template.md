@@ -92,7 +92,7 @@ This has been implemented in the `curvature_radius()` function of the project. H
 3. Fit a polynomial in the World-Space
 4. Calculate the Radius of Curvature using the formula.
 
-### Step 7 : Caculating vehicle  Position
+### Step 7 : Calculating Vehicle Position
 
 This has been implemented in the `car_offset()` function. It computes the car location with respect to the mid-point of the image frame and the location of the left-right lane.
 
@@ -112,7 +112,15 @@ The steps involved were -
 
 ### Pipeline (video)
 
-#### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
+After completing each of the above steps, they need to be orhestrated properly to make a singular Pipeline for processing images and videos alike.
+For this the class **`ProcessImage`** was created to handle the flow at one place. This also encourages addition & removal of processing steps easily from the pipeline. This pipeline has thus processes videos frame-by-frame, to simulate a process of real-time image stream from a actual vehicle.
+
+The `ProcessImage` pipeline first evaluates whether or not a lane was detected in the previous frame. 
+* If not, it performs a blind search over the image to find the lane. 
+* If the lane was detected in the previous fram, it only only searches for the lane, in close proximity of the previous lane (polynomial of the previous frame). 
+* This enables the pipeline/system to avoid scanning the entire image and build high-confidence (enabling more fault tolerant) as new location is based on the previous location.
+* When the pipeline fails to detect a lane pixel based on the previous detected pixels, it reverts back to blind search mode to scan the entire image for non-zero pixel via the image histogram.
+* This also boosts the time performance of or pipeline.
 
 Here's a [link to my video result](./project_video.mp4)
 
@@ -121,5 +129,15 @@ Here's a [link to my video result](./project_video.mp4)
 ### Discussion
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+#### Challenges Faced -
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+1. With the challenge and harder challenge video, it pipeline performace was detected. This showed that the preprocessing values to do not hold true for under all circumstances. 
+2. The test images used for fine-tuning the thresholds had fairly good images under proper lighting. Images uder bad lighting needs to be included to tune the parameters further.
+3. Perspective Transform points where chosen manually and hence performed poorly in the harder challenge videos.
+
+#### Futhure Work
+1. At first, more test images of different conditions needs to be included.
+2. Other pre-processing transforms like Gaussian Blur, Dilation & Erosion needs to be included in the pipeline
+3. The Similar Detection of lanes can be further improved to keep a memory of more the ust one previosu lane detection.
+4. A running average for the lane detection can be used to make smooth polynomials.
+5. A clipping can be used when the Radius of Curvature / Vehicle offset makes a sharp change compared to it's previous values as that's a wronf detection in general evident from the harder challenge videos.
