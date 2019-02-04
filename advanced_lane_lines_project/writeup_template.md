@@ -137,12 +137,23 @@ For this the class **`ProcessImage`** was created to handle the flow at one plac
 
 The `ProcessImage` pipeline first evaluates whether or not a lane was detected in the previous frame. 
 * If not, it performs a blind search over the image to find the lane. 
-* If the lane was detected in the previous fram, it only only searches for the lane, in close proximity of the previous lane (polynomial of the previous frame). 
+* If the lane was detected in the previous frame, it only searches for the lane, in close proximity of the previous lane (polynomial of the previous frame). 
 * This enables the pipeline/system to avoid scanning the entire image and build high-confidence (enabling more fault tolerant) as new location is based on the previous location.
 * When the pipeline fails to detect a lane pixel based on the previous detected pixels, it reverts back to blind search mode to scan the entire image for non-zero pixel via the image histogram.
 * This also boosts the time performance of or pipeline.
+* To improve stability, after a pre-defined number of frames , blind search is done again. Currently after 50 frames.
+* The Pipeline first tries to use only Color Spaces for lane detection, when it fails, it includes other transforms & thresholds to be more exhaustive in the Blind Search.
+* Also, the car-offset is used as a threshold to re-set to blind search as by theory the Car should be in the middle of the driving lane. This addition allows quick fall-back for better detection than waiting for a fixed number of Frames/Exception.
 
-Here's a [link to my video result](./project_video.mp4)
+
+From the processing of the videos the following can be observed -
+* The Proect Video processing shows two handled exceptions, which denotes that Color Spaces failed to detect Lane
+* The Challenge Video processing shows the maximum number of exceptions, but overall does a pretty good job in Lane Detection. It faces problem initially around (0:03 -0:04 sec) due to the fly-over shadow.
+* The Harder Challenge Video proessing shows multiple exception for only Color Spaces but still less that the challenge video. Though the lane detection is not that smooth because of sharp turns.
+
+Proect Output are here -
+1. Project Solution Video - [Link](https://drive.google.com/file/d/1xHsZviWhZDr-SvlhvIdJbl041PT8JWKc/view?usp=sharing)
+2. Harder Challenge Solution Video - [Link](https://drive.google.com/file/d/1Zq9XWgD2VBH3kcojAVXBFVdC1UlnRFpU/view?usp=sharing)
 
 ---
 
@@ -151,7 +162,8 @@ Here's a [link to my video result](./project_video.mp4)
 
 1. With the challenge and harder challenge video, it pipeline performace was detected. This showed that the preprocessing values to do not hold true for under all circumstances. 
 2. The test images used for fine-tuning the thresholds had fairly good images under proper lighting. Images uder bad lighting needs to be included to tune the parameters further.
-3. Perspective Transform points where chosen manually and hence performed poorly in the harder challenge videos.
+3. Brightness & Shadow play and important role for detection. Proper transforms and switching between different methods is crucial.
+4. Perspective Transform points where chosen manually and hence performed poorly in the harder challenge videos.
 
 #### Futhure Work
 1. At first, more test images of different conditions needs to be included.
