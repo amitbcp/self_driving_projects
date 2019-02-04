@@ -152,8 +152,9 @@ From the processing of the videos the following can be observed -
 * The Harder Challenge Video proessing shows multiple exception for only Color Spaces but still less that the challenge video. Though the lane detection is not that smooth because of sharp turns.
 
 Proect Output are here -
-1. Project Solution Video - [Link](https://drive.google.com/file/d/1xHsZviWhZDr-SvlhvIdJbl041PT8JWKc/view?usp=sharing)
-2. Harder Challenge Solution Video - [Link](https://drive.google.com/file/d/1Zq9XWgD2VBH3kcojAVXBFVdC1UlnRFpU/view?usp=sharing)
+1. Project Solution Video - [Link](https://drive.google.com/file/d/14IxcJF0GpTOEav85SvC9CAv4PvYZz3lB/view?usp=sharing)
+2. Challenge Solution Video - [Link](https://drive.google.com/file/d/123MNmlw0t9JbuonkEe67ijILA-PQ9QIO/view?usp=sharing)
+3. Harder Challenge Solution Video - [Link](https://drive.google.com/open?id=1Du1Ux9hZKc7Lyo59uGhg2HBN9MMOZFn5)
 
 ---
 
