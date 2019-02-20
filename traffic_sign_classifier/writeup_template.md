@@ -62,13 +62,9 @@ Data Augmentation was also used to increase the training data majorly because of
 3. Since Traffic Signs classification is a real world problem, the model should be trained to handle image from any angle and lighting conditions.
 
 The following techniques were used for the data augmentation :
-1. **`Random Rotation`** :
-
-I decided to generate additional data because ... 
-
-To add more data to the the data set, I used the following techniques because ... 
-
-Here is an example of an original image and an augmented image:
+1. **`Random Rotation`** : Randomly rotating the image in a fixed range.
+2. **`Wrap`** :
+3. **`Brigtness`** : Changing the base brightness of the image.
 
 ![alt text][image3]
 
@@ -81,16 +77,26 @@ My final model consisted of the following layers:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
+| Input         		| 32x32x1 Image   							| 
+| Convolution 1 : 3x3     	| 1x1 stride, VALID padding, outputs 30x30x12 	|
 | RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
- 
+| Convolution 2 : 3x3     	| 1x1 stride, VALID padding, outputs 28x28x24 	|
+| Max pooling	 1     	| 2x2 stride,  outputs 14x14x24 				|
+| Convolution 3 : 5x5	    | 1x1 stride, VALID padding, outputs 10x10x36     									|
+| RELU					|	
+| Convolution 4 : 5x5	    | 1x1 stride, VALID padding, outputs 6x6x48     									|
+| RELU					|												|
+| Max pooling	  2    	| 2x2 stride,  outputs 3x3x48  				|
+| Flattening		|   The output of Max Pool 1 (i.e. from 2nd Convolution) & Max Pool 2 (i.e. from 4th Convolution) are concatenated. This is skip connection/residual connections      									|
+| Fully connected	1	| 5136 x 512       									|
+| RELU					|												|
+| Dropout					|												|
+| Fully connected	2	| 512 x 256       									|
+| RELU					|												|
+| Dropout					|												|
+| Softmax				|         									|
+| Fully connected	3	| 256    x 43   									|
+
 
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
