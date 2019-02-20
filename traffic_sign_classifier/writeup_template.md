@@ -94,14 +94,19 @@ My final model consisted of the following layers:
 | Fully connected	2	| 512 x 256       									|
 | RELU					|												|
 | Dropout					|												|
-| Softmax				|         									|
 | Fully connected	3	| 256    x 43   									|
+| Softmax				|         									|
 
 
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-To train the model, I used an ....
+With the above explained model architecture, along with the augumented data , I used to following for training : 
+1. AdamOptimizer - This enables faster convergence compared to gradient descend, along with it's inherited RMSprop & Momentum application
+2. Learning Rate - A very low learning rate of **0.0005** was used with auto-decay to reduce it further as the training progesses.
+3. Batch Size - Batch Size of 64 was used as a multiple f 32 to enable more stable learning and average updated during back-propagation.
+4. Epoch - 100 Epochs where chosed for training but it can be seen that the model learned in less than 10 Epochs.
+5. Dropout - Keep Probability of **0.7** was used instead of standard 0.5
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
@@ -111,16 +116,14 @@ My final model results were:
 * test set accuracy of ?
 
 If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+* A Deep CNN was chosen as the first architecture with 2 Convolution Layers followed by Fully connected layers
+* It reached a accuracy of 68 %
+* The model had low accuracy on both sets indicating under fitting. Which was evident from the shallowness of the Network.
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
+Finally I explored residual networks.
+* A simple residual network was implemented which created a skip connection to the final convolution layer for flattening.
+* It seems relevant for Traffic Signs as , the signs have very few sections that are colured. They have very distinct and clear boundaries and consistent color. This leads to the dead neurons because of no gradients flowing through them during back-propagation. Hence the adding skip-connections is a legit option.
+* The result can be seen from the training, that the model achieves high accuracy in just a couple of Epochs.
  
 
 ### Test a Model on New Images
