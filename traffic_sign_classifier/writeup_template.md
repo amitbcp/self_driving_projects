@@ -63,7 +63,7 @@ Data Augmentation was also used to increase the training data majorly because of
 
 The following techniques were used for the data augmentation :
 1. **`Random Rotation`** : Randomly rotating the image in a fixed range.
-2. **`Wrap`** :
+2. **`Wrap`** : Created a Affine Wrap for the image
 3. **`Brigtness`** : Changing the base brightness of the image.
 
 ![alt text][image3]
@@ -111,9 +111,9 @@ With the above explained model architecture, along with the augumented data , I 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of 100%
+* validation set accuracy of 98.9%
+* test set accuracy of 97.04%
 
 If an iterative approach was chosen:
 * A Deep CNN was chosen as the first architecture with 2 Convolution Layers followed by Fully connected layers
@@ -169,7 +169,10 @@ For the first image, the model is relatively sure that this is a stop sign (prob
 
 For the second image ... 
 
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
+### Visualizing the Neural Network
 #### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
+From the feature map visualisation we can infer the the model learned the followings features based on which it identifies/classifies the images -
+1. Boundaries and edges - We can clearly see that differnt features of the convolutions are getting acctivated by different section of hte image boundary.
+2. Blobs of activations - We can also see from the second convolution that the blobs of pixel are activating the Filter map which shows the network learning basic feature detection , which it uses to detect lines/edges/circles.
 
