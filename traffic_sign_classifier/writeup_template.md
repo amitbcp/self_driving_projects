@@ -11,7 +11,6 @@ The goals / steps of this project are the following:
 * Analyze the softmax probabilities of the new images
 * Summarize the results with a written report
 
-
 [//]: # (Image References)
 
 [image1]: ./output_images/Train_Dataset_Distribution.png "Training Dataset Distribution"
@@ -106,8 +105,6 @@ My final model consisted of the following layers:
 | Fully connected	3	| 256    x 43   									|
 | Softmax				|         									|
 
-
-
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
 With the above explained model architecture, along with the augumented data , I used to following for training : 
@@ -151,17 +148,13 @@ Here are five German traffic signs that I found on the web along witht there pro
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
-
 The model was able to correctly classify the 5 images from the web, which justifies the model accuracy of 97%. Also the distribution can be seen in the probablity score below.
-
-
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
 The code for the inferencing can be found in **``Step-7 Inference Pipeline``** section of the notebook
 The probability graph shows the model is sure of it's prediction with the singular hig score predi tion.This justifies the model performance of 97%
 ![alt text][image14]
-
 
 ### Visualizing the Neural Network
 #### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
