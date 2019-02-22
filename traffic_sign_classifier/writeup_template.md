@@ -14,14 +14,20 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image1]: ./output_images/Train_Dataset_Distribution.png "Training Dataset Distribution"
+[image2]: ./output_images/Test_Dataset_Distribution.png "Test Dataset Distribution"
+[image3]: ./output_images/Validation_Dataset_Distribution.png "Validation Dataset Distribution"
+[image4]: ./output_images/visualize_training_data.png "Visualize Training Images"
+[image5]: ./output_images/preprocessed_images.png "Preprocessed Images"
+[image6]: ./output_images/training_accuracy.png "Training Loss Graph"
+[image7]: ./output_images/training_loss.png "Training Loss Graph"
+[image8]: ./output_images/confusion_matrix.png "Confusio Matrix"
+[image9]: ./output_images/new_prediction.png "Confusio Matrix"
+[image10]: ./output_images/spped_limit_80_visualisation.png "Image"
+[image11]: ./output_images/placeholder.png "Feature Map Visualisation 1"
+[image12]: ./output_images/placeholder.png "Feature Map Visualisation 1"
+[image13]: ./output_images/spped_limit_80_feature_map2.png "Traffic Sign 4"
+[image14]: ./output_images/spped_limit_80_feature_map1.png "Traffic Sign 5"
 
 
 You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
