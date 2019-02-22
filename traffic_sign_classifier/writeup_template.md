@@ -26,7 +26,7 @@ The goals / steps of this project are the following:
 [image10]: ./input_images/image_2.jpg ""
 [image11]: ./input_images/image_3.jpg ""
 [image12]: ./input_images/image_4.jpg ""
-[image13]: ./input_images/image_5.jpg ""
+[image13]: ./input_images/image_6.jpg ""
 
 [image14]: ./output_images/new_prediction.png "Web Images Prediction"
 [image15]: ./output_images/spped_limit_80_visualisation.png "Image"
@@ -149,6 +149,15 @@ Here are five German traffic signs that I found on the web along witht there pro
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
 The model was able to correctly classify the 5 images from the web, which justifies the model accuracy of 97%. Also the distribution can be seen in the probablity score below.
+
+
+| Image			        |     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| ![alt text][image9]      		| Easy   									| 
+|![alt text][image10] 			| MOderate,the sign has a high resolution getty_image printed.  										|
+|![alt text][image11]			| Easy, but image is jittered								|
+| ![alt text][image12]      		| Moderate, As lot of backgroud objects and image not being centered				 				|
+| ![alt text][image13]			| Difficult, as The Sign board is in Chinese.   							|
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
