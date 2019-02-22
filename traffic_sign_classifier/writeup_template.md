@@ -21,13 +21,18 @@ The goals / steps of this project are the following:
 [image5]: ./output_images/preprocessed_images.png "Preprocessed Images"
 [image6]: ./output_images/training_accuracy.png "Training Loss Graph"
 [image7]: ./output_images/training_loss.png "Training Loss Graph"
-[image8]: ./output_images/confusion_matrix.png "Confusio Matrix"
-[image9]: ./output_images/new_prediction.png "Confusio Matrix"
-[image10]: ./output_images/spped_limit_80_visualisation.png "Image"
-[image11]: ./output_images/placeholder.png "Feature Map Visualisation 1"
-[image12]: ./output_images/placeholder.png "Feature Map Visualisation 1"
-[image13]: ./output_images/spped_limit_80_feature_map2.png "Traffic Sign 4"
-[image14]: ./output_images/spped_limit_80_feature_map1.png "Traffic Sign 5"
+[image8]: ./output_images/confusion_matrix.png "Confusion Matrix"
+
+[image9]: ./input_images/image_1.jpg ""
+[image10]: ./input_images/image_2.jpg ""
+[image11]: ./input_images/image_3.jpg ""
+[image12]: ./input_images/image_4.jpg ""
+[image13]: ./input_images/image_5.jpg ""
+
+[image14]: ./output_images/new_prediction.png "Web Images Prediction"
+[image15]: ./output_images/spped_limit_80_visualisation.png "Image"
+[image16]: ./output_images/spped_limit_80_feature_map2.png "Convolution 1"
+[image17]: ./output_images/spped_limit_80_feature_map1.png "Convolution 2"
 
 
 You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
@@ -47,9 +52,12 @@ signs data set:
 
 #### 2. Exploratory visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+We can visualize the class distribution of the dataset. Hence we can infer that all the 43 classes are not equally balanced and there is a lot of skewness in the data. Though it is also to be noted that the distribution is same across the train/valid/test data case.
 
 ![alt text][image1]
+![alt text][image2]
+![alt text][image3]
+![alt text][image4]
 
 ### Design and Test a Model Architecture
 
@@ -60,22 +68,17 @@ For pre-processing , I used the following techniques -
 2. Normalizing the image using the Min & Max Normalization .
 3. Finally added the channel dimension for the Neural Network.
 
-![alt text][image2]
-
 Data Augmentation was also used to increase the training data majorly because of the following : 
 1. The classification is for 43 classes, and it is important to have sufficient representation in each class.
 2. We don't want the classifier to be biased for any particular class due to training data shortage.
 3. Since Traffic Signs classification is a real world problem, the model should be trained to handle image from any angle and lighting conditions.
 
+![alt text][image5]
+
 The following techniques were used for the data augmentation :
 1. **`Random Rotation`** : Randomly rotating the image in a fixed range.
 2. **`Wrap`** : Created a Affine Wrap for the image
 3. **`Brigtness`** : Changing the base brightness of the image.
-
-![alt text][image3]
-
-The difference between the original data set and the augmented data set is the following ... 
-
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
@@ -121,6 +124,9 @@ My final model results were:
 * validation set accuracy of 98.9%
 * test set accuracy of 97.04%
 
+![alt text][image6]
+![alt text][image7]
+
 If an iterative approach was chosen:
 * A Deep CNN was chosen as the first architecture with 2 Convolution Layers followed by Fully connected layers
 * It reached a accuracy of 68 %
@@ -131,29 +137,19 @@ Finally I explored residual networks.
 * It seems relevant for Traffic Signs as , the signs have very few sections that are colured. They have very distinct and clear boundaries and consistent color. This leads to the dead neurons because of no gradients flowing through them during back-propagation. Hence the adding skip-connections is a legit option.
 * The result can be seen from the training, that the model achieves high accuracy in just a couple of Epochs.
  
+![alt text][image8]
 
 ### Test a Model on New Images
 
 #### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
-Here are five German traffic signs that I found on the web:
+Here are five German traffic signs that I found on the web along witht there probabilty distribution for prediction
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
-
-The first image might be difficult to classify because ...
+![alt text][image9]![alt text][image10]![alt text][image11]
+![alt text][image12]![alt text][image13]
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
-Here are the results of the prediction:
-
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
 
 
 The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
