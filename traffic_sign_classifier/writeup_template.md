@@ -154,7 +154,7 @@ The model was able to correctly classify the 5 images from the web, which justif
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | ![alt text][image9]      		| Easy   									| 
-|![alt text][image10] 			| MOderate,the sign has a high resolution getty_image printed.  										|
+|![alt text][image10] 			| Moderate,the sign has a high resolution getty_image printed.  										|
 |![alt text][image11]			| Easy, but image is jittered								|
 | ![alt text][image12]      		| Moderate, As lot of backgroud objects and image not being centered				 				|
 | ![alt text][image13]			| Difficult, as The Sign board is in Chinese.   							|
