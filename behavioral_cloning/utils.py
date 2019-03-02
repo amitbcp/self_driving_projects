@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import tensorflow as tf
 
 
 def bgr2rgb(image):
@@ -26,3 +27,6 @@ def crop_resize(image, shape=None):
   else:
     resized = resize(cropped, shape)
   return resized
+
+def img_resize(img):
+    return tf.image.resize_images(img, (70, 160))

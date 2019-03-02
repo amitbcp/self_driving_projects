@@ -6,6 +6,7 @@ import numpy as np
 from model import network
 from sklearn.utils import shuffle
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 
 
 class TrainingPipeline:
@@ -31,7 +32,7 @@ class TrainingPipeline:
 
     return self.data
 
-  def process_batch(self, batch):
+  def process_batch(self, batch, append=True):
     steering_angle = np.float32(batch[3])
     images, steering_angles = list(), list()
 
@@ -39,9 +40,9 @@ class TrainingPipeline:
       image_name = batch[image_path].split('/')[-1]
       image = cv2.imread(self.image_path + image_name)
       image_rgb = utils.bgr2rgb(image)
-      image_resized = utils.crop_resize(image_rgb)
+      #image_resized = utils.crop_resize(image_rgb)
 
-      images.append(image_resized)
+      images.append(image_rgb)
       if image_path == 1:
         steering_angles.append(steering_angle + self.correction_factor)
       elif image_path == 2:
@@ -49,13 +50,14 @@ class TrainingPipeline:
       elif image_path == 0:
         steering_angles.append(steering_angle)
 
+      if append:
         #Appending data
-        image_flipped = utils.flip_img(image_resized)
+        image_flipped = utils.flip_img(image_rgb)
         images.append(image_flipped)
         steering_angles.append((-1) * steering_angle)
     return images, steering_angles
 
-  def data_generator(self, data, batch_size=128):
+  def data_generator(self, data, batch_size=32):
     num_samples = len(data)
 
     while True:
@@ -77,23 +79,36 @@ class TrainingPipeline:
     train, validation = train_test_split(self.data, test_size=0.2)
     self.training_data, self.validation_data = train, validation
 
-  def training_data_generator(self, batch_size=128):
+  def training_data_generator(self, batch_size=32):
     return self.data_generator(data=self.training_data, batch_size=batch_size)
 
-  def validation_data_generator(self, batch_size=128):
+  def validation_data_generator(self, batch_size=32):
     return self.data_generator(
       data=self.validation_data, batch_size=batch_size)
 
   def run(self):
     self.split_data()
-    self.model.fit_generator(
+    history_object = self.model.fit_generator(
       generator=self.training_data_generator(),
       validation_data=self.validation_data_generator(),
       epochs=self.epochs,
       steps_per_epoch=len(self.training_data) * 2,
-      validation_steps=len(self.validation_data))
+      validation_steps=len(self.validation_data),
+      verbose=1)
 
-    self.model.save('model.h5')
+    self.model.save('model_1_ep_' + self.epochs + '.h5')
+    ### print the keys contained in the history object
+    print(history_object.history.keys())
+
+    ### plot the training and validation loss for each epoch
+    plt.plot(history_object.history['loss'])
+    plt.plot(history_object.history['val_loss'])
+    plt.title('model mean squared error loss')
+    plt.ylabel('mean squared error loss')
+    plt.xlabel('epoch')
+    plt.legend(['training set', 'validation set'], loc='upper right')
+    plt.savefig('Training_Loss_md_1_ep_' + self.epochs + '.png')
+    #plt.show()
 
 
 def main():
