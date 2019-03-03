@@ -7,6 +7,7 @@ from model import network
 from sklearn.utils import shuffle
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
+import pickle
 
 
 class TrainingPipeline:
@@ -50,11 +51,11 @@ class TrainingPipeline:
       elif image_path == 0:
         steering_angles.append(steering_angle)
 
-      if append:
-        #Appending data
-        image_flipped = utils.flip_img(image_rgb)
-        images.append(image_flipped)
-        steering_angles.append((-1) * steering_angle)
+        if append:
+          #Appending data
+          image_flipped = utils.flip_img(image_rgb)
+          images.append(image_flipped)
+          steering_angles.append((-1) * steering_angle)
     return images, steering_angles
 
   def data_generator(self, data, batch_size=32):
@@ -96,18 +97,19 @@ class TrainingPipeline:
       validation_steps=len(self.validation_data),
       verbose=1)
 
-    self.model.save('model_1_ep_' + self.epochs + '.h5')
+    self.model.save('model_1_ep_' + str(self.epochs) + '.h5')
     ### print the keys contained in the history object
     print(history_object.history.keys())
-
-    ### plot the training and validation loss for each epoch
-    plt.plot(history_object.history['loss'])
-    plt.plot(history_object.history['val_loss'])
-    plt.title('model mean squared error loss')
-    plt.ylabel('mean squared error loss')
-    plt.xlabel('epoch')
-    plt.legend(['training set', 'validation set'], loc='upper right')
-    plt.savefig('Training_Loss_md_1_ep_' + self.epochs + '.png')
+    with open('history_object.pickle', 'wb') as handle:
+      pickle.dump(history_object, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    # ### plot the training and validation loss for each epoch
+    # plt.plot(history_object.history['loss'])
+    # plt.plot(history_object.history['val_loss'])
+    # plt.title('model mean squared error loss')
+    # plt.ylabel('mean squared error loss')
+    # plt.xlabel('epoch')
+    # plt.legend(['training set', 'validation set'], loc='upper right')
+    # plt.savefig('Training_Loss_md_1_ep_' + str(self.epochs) + '.png')
     #plt.show()
 
 
