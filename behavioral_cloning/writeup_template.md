@@ -18,33 +18,40 @@ The goals / steps of this project are the following:
 [image6]: ./examples/placeholder_small.png "Normal Image"
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 
-## Rubric Points
-### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
-
 ---
 ### Model Architecture and Training Strategy
 
 #### 1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
+The model architecture was inspired from NVIDIA to a certain extent but later with the help of the results, it could be seen that even a slightly simpler model works good.
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+The model is defined in the ```model.py``` script. It could be seen that the script has two function with the only difference in terms of addition of Dropout to make reduce overfitting.
+The architecture has the following characteristics. -
+  1. The Kernels used were 5x5 & 3x3. The depth size keeps on increasing from 24-36-48-64 till the end in the given order.
+  2. RELU has been used as the Neural Network Activation  function to add non-linearity.
+  3. Dropout is included in the last dense layers to avoid overfitting of the model.
+  4. It should also be noted that no Max-Pool or Avg-Pool layers were used. Instead strides of 2 was used to reduce the dimensionality & parameters in the network.
+  5. For loss , Mean Squared Error was used and, ADAM's optimizer for backprogation and convergence of the model.
 
 #### 2. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
-
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+It was observed that the model started overfitting on the dataset highly on increasing the number of epoch's, i.e. training loss kept on decreasing while validation loss remained same.
+The methods used for the same were -
+  1. The entire dataset was divided into two separate-parts. Training/Validation which were kept separate. The division was 80%-20% for Training-Validation.
+  2.Tracking Loss across the training over both training data-set & validation-set
+  3. Dropout was used in the fully connected layers of the model.
+Finally the model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 #### 3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model used an adam optimizer, so the learning rate was tuned automatically during the training.
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
+  1. Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road.
+  2. Apart from using only the center camera image, the images from the left/right camera was used for trainig. The steering angle was accordingly adjusted for the same , so the the car recovers if it moves to much in a particular direction going off the road.
 
-For details about how I created the training data, see the next section. 
+
 
 ### Model Architecture and Training Strategy
 
