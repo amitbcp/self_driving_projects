@@ -11,9 +11,9 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./output_images/architecture.png "Model Visualization"
-[image2]: ./output_images/original_dataset_distribution.png "Grayscaling"
-[image3]: ./output_images/augmented_dataset_distribution.png "Recovery Image"
-[image4]: ./examples/augmented_dataset_distribution_v1.png "Recovery Image"
+[image2]: ./output_images/original_dataset_distribution.png "Data Distribution"
+[image3]: ./output_images/augmented_dataset_distribution.png "Further Augmented Data Distribution"
+[image4]: ./output_images/augmented_dataset_distribution_v1.png "Augmented Data Distribution"
 [image5]: ./examples/placeholder_small.png "Recovery Image"
 [image6]: ./examples/placeholder_small.png "Normal Image"
 [image7]: ./examples/placeholder_small.png "Flipped Image"
@@ -57,14 +57,31 @@ The model used an adam optimizer, so the learning rate was tuned automatically d
 
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
+The overall strategy for deriving a model architecture was to keep it small yet powerful. 
+Initially I thought of using some state-of-the art architectures but soon realised that those would be an overkill given this is an regression problem and not a classfication problem.
 
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
+The model was designed based on the following nature of the problem and properties -
+  1. Since it was a regression problem, choosing the error metric was simple to ```MSE``` and `ADAMs` optimizer.
+  2. Since the camera captures the image from the car is the front view, it made sense using filters of size 5x5 in the begining rather towards the end of the network.
+  3. Larger kernel size increases the optical view of the convolution helping it recognize the contnious filter on a larger scale than a 3x3
+  4. Since the road is expected to have less frequency distribution, a 5x5 works better followed by 3x3 to bottleneck the convolution.
+  5. This also helps in reducing the parameters in the network.
+  6. Based on the above intuition that the road has less frequency distribution, instead of using Max-Pool layers, the convolution was done with a stride of 2 in the first few layers.
+  
+In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. 
+I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
+To combat the overfitting, I first augmented the training data further to have a better distribtuion. It can be visualised below -
 
-To combat the overfitting, I modified the model so that ...
+##### Orginial Data Distribution
 
+![alt text][image2]
+##### Augmented Data Distribution
+
+![alt text][image4]
+##### On further Augmenting Data
+
+![alt text][image3]
 Then I ... 
 
 The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
