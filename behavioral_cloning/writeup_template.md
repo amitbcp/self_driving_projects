@@ -82,15 +82,14 @@ To combat the overfitting, I first augmented the training data further to have a
 ##### On further Augmenting Data
 
 ![alt text][image3]
-Then I ... 
 
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
 
+The final step was to run the simulator to see how well the car was driving around track one.
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture consisted of a convolution neural network with the following layers and layer sizes ...
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
@@ -98,20 +97,16 @@ Here is a visualization of the architecture (note: visualizing the architecture 
 
 #### 3. Creation of the Training Set & Training Process
 
-For the training data, I used the default data provided by Udacity as using it along with Data Augmentation techniques, I was able to train the network pretty well.
+For the training data, I used the default data provided by Udacity as using it along with Data Augmentation techniques, I was able to train the network pretty well. To augment the data I used the following -
+  1. Included the Left & Right camera images to help the car recover from the side and adjusting the steering angle
+  2. Flipped the images & it's steering angle. That is similar to driving on the track from end to start.
 
-Then I repeated this process on track two in order to get more data points.
-
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
-
-![alt text][image6]
-![alt text][image7]
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+After the collection process, I had 12k number of data points for training. I then preprocessed as follows - 
+  1. The image was converted to RGB Color Space
+  2. The image was cropped 60 pixels from the top to remove the scenery as that acts as unnecessary information/noise for the network
+  3. The image was cropped 30 pixels from the bottom to remove the car front hood and eliminate noise.
 
 
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
+I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 1 as evidenced by the model did not show much improvement over increasing the epoch, rather it started overfitting and crashing the car when the epoch was made to 4 in one of the experiments.ADAM optimizer so that manually training the learning rate wasn't .necessary.
