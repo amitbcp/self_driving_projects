@@ -1,9 +1,4 @@
-"""
-@Author : Mohit Jain
-@Email  : mohit.jain@abzooba.com
 
-@About  : Script to perform basic clustering experiments on CG-charts data
-"""
 
 # Imports
 import os
