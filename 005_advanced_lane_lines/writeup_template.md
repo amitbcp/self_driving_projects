@@ -48,7 +48,7 @@ All the necessary packages for the project are imported in the very start of the
 The code for this step is contained in the following funtion in the 3rd cell of the IPython notebook located in "./examples/example.ipynb"
 * **calibrate_camera()** - This method goes over multiple raw images to detect ChessBoard corner points used for calibration
 
-The  "object points", from the calibrate_camera() which will be the (x, y, z) coordinates of the chessboard corners in the world. Here,the assumption is tht the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time it successfully detects all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.  
+The  "object points", from the calibrate_camera() which will be the (x, y, z) coordinates of the chessboard corners in the world. Here,the assumption is tht the chessboard is fixed on the (x, y) plane at z=0, such that the object points are the same for each calibration image.  Thus, `objp` is just a replicated array of coordinates, and `objpoints` will be appended with a copy of it every time it successfully detects all chessboard corners in a test image.  `imgpoints` will be appended with the (x, y) pixel position of each of the corners in the image plane with each successful chessboard detection.
 
 ![alt text][image1]
 
@@ -56,7 +56,7 @@ The  "object points", from the calibrate_camera() which will be the (x, y, z) co
 The code for this step is contained in the following funtion in the 5th cell of the IPython notebook located in "./examples/example.ipynb"
 * **undistort()** - This method remove distortion from images base on the calibrtion object points of the camera.
 
-The output `objpoints` and `imgpoints` is used tp compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function. The distortion correction to the test image using the `cv2.undistort()` function and obtained this result: 
+The output `objpoints` and `imgpoints` is used tp compute the camera calibration and distortion coefficients using the `cv2.calibrateCamera()` function. The distortion correction to the test image using the `cv2.undistort()` function and obtained this result:
 
 ![alt text][image2]
 
@@ -94,7 +94,7 @@ The source (`src_coordinates`) and destination (`dst_coordinates`) points were h
 At first the histogram was computed for the image, following which the left & right lanes where detected based on the spikes on the left/right section of the image.
 
 Instead of computing blind search for every search, after the inital few frames, the lane search was limited only to the near by region of hte previous lane fits to fasten app the processing. Once again if no lane was detect, a blind search was used via the histogram mapping.
-The following functions were used for the following  - 
+The following functions were used for the following  -
 1. **`get_histogram()`** - This functions computes the histogram mapping of any input image.
 2. **`detect_lines()`** -  This function performs a blind search on the frame to detect the left/right lane
 3. **`detect_similar_lines()`** - This function relies on the previously detected lanes to find lane points in the vicinity. If not found they perform a blind search again using `detect_lines()`
@@ -135,9 +135,9 @@ The steps involved were -
 After completing each of the above steps, they need to be orhestrated properly to make a singular Pipeline for processing images and videos alike.
 For this the class **`ProcessImage`** was created to handle the flow at one place. This also encourages addition & removal of processing steps easily from the pipeline. This pipeline has thus processes videos frame-by-frame, to simulate a process of real-time image stream from a actual vehicle.
 
-The `ProcessImage` pipeline first evaluates whether or not a lane was detected in the previous frame. 
-* If not, it performs a blind search over the image to find the lane. 
-* If the lane was detected in the previous frame, it only searches for the lane, in close proximity of the previous lane (polynomial of the previous frame). 
+The `ProcessImage` pipeline first evaluates whether or not a lane was detected in the previous frame.
+* If not, it performs a blind search over the image to find the lane.
+* If the lane was detected in the previous frame, it only searches for the lane, in close proximity of the previous lane (polynomial of the previous frame).
 * This enables the pipeline/system to avoid scanning the entire image and build high-confidence (enabling more fault tolerant) as new location is based on the previous location.
 * When the pipeline fails to detect a lane pixel based on the previous detected pixels, it reverts back to blind search mode to scan the entire image for non-zero pixel via the image histogram.
 * This also boosts the time performance of or pipeline.
@@ -161,7 +161,7 @@ Proect Output are here -
 ### Discussion
 #### Challenges Faced -
 
-1. With the challenge and harder challenge video, it pipeline performace was detected. This showed that the preprocessing values to do not hold true for under all circumstances. 
+1. With the challenge and harder challenge video, it pipeline performace was detected. This showed that the preprocessing values to do not hold true for under all circumstances.
 2. The test images used for fine-tuning the thresholds had fairly good images under proper lighting. Images uder bad lighting needs to be included to tune the parameters further.
 3. Brightness & Shadow play and important role for detection. Proper transforms and switching between different methods is crucial.
 4. Perspective Transform points where chosen manually and hence performed poorly in the harder challenge videos.

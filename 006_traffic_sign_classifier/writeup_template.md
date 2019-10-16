@@ -1,4 +1,4 @@
-# **Traffic Sign Recognition** 
+# **Traffic Sign Recognition**
 ---
 
 **Build a Traffic Sign Recognition Project**
@@ -62,12 +62,12 @@ We can visualize the class distribution of the dataset. Hence we can infer that 
 
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-For pre-processing , I used the following techniques - 
+For pre-processing , I used the following techniques -
 1. Equalized `Y` channel in the YUV color space : This works as `Y` denotes the luminance where as the U & V are the color. Since the Traffic signs denote meaning from the shape rather than color,it makes sense that a converting to Grayscale which takes an average of the Color Channel.
 2. Normalizing the image using the Min & Max Normalization .
 3. Finally added the channel dimension for the Neural Network.
 
-Data Augmentation was also used to increase the training data majorly because of the following : 
+Data Augmentation was also used to increase the training data majorly because of the following :
 1. The classification is for 43 classes, and it is important to have sufficient representation in each class.
 2. We don't want the classifier to be biased for any particular class due to training data shortage.
 3. Since Traffic Signs classification is a real world problem, the model should be trained to handle image from any angle and lighting conditions.
@@ -83,15 +83,15 @@ The following techniques were used for the data augmentation :
 
 My final model consisted of the following layers:
 
-| Layer         		|     Description	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x1 Image   							| 
+| Layer         		|     Description	        					|
+|:---------------------:|:---------------------------------------------:|
+| Input         		| 32x32x1 Image   							|
 | Convolution 1 : 3x3     	| 1x1 stride, VALID padding, outputs 30x30x12 	|
 | RELU					|												|
 | Convolution 2 : 3x3     	| 1x1 stride, VALID padding, outputs 28x28x24 	|
 | Max pooling	 1     	| 2x2 stride,  outputs 14x14x24 				|
 | Convolution 3 : 5x5	    | 1x1 stride, VALID padding, outputs 10x10x36     									|
-| RELU					|	
+| RELU					|
 | Convolution 4 : 5x5	    | 1x1 stride, VALID padding, outputs 6x6x48     									|
 | RELU					|												|
 | Max pooling	  2    	| 2x2 stride,  outputs 3x3x48  				|
@@ -107,7 +107,7 @@ My final model consisted of the following layers:
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-With the above explained model architecture, along with the augumented data , I used to following for training : 
+With the above explained model architecture, along with the augumented data , I used to following for training :
 1. AdamOptimizer - This enables faster convergence compared to gradient descend, along with it's inherited RMSprop & Momentum application
 2. Learning Rate - A very low learning rate of **0.0005** was used with auto-decay to reduce it further as the training progesses.
 3. Batch Size - Batch Size of 64 was used as a multiple f 32 to enable more stable learning and average updated during back-propagation.
@@ -134,7 +134,7 @@ Finally I explored residual networks.
 * A simple residual network was implemented which created a skip connection to the final convolution layer for flattening.
 * It seems relevant for Traffic Signs as , the signs have very few sections that are colured. They have very distinct and clear boundaries and consistent color. This leads to the dead neurons because of no gradients flowing through them during back-propagation. Hence the adding skip-connections is a legit option.
 * The result can be seen from the training, that the model achieves high accuracy in just a couple of Epochs.
- 
+
 ![alt text][image8]
 
 ### Test a Model on New Images
@@ -151,9 +151,9 @@ Here are five German traffic signs that I found on the web along witht there pro
 The model was able to correctly classify the 5 images from the web, which justifies the model accuracy of 97%. Also the distribution can be seen in the probablity score below.
 
 
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| ![alt text][image9]      		| Easy   									| 
+| Image			        |     Prediction	        					|
+|:---------------------:|:---------------------------------------------:|
+| ![alt text][image9]      		| Easy   									|
 |![alt text][image10] 			| Moderate,the sign has a high resolution getty_image printed.  										|
 |![alt text][image11]			| Easy, but image is jittered								|
 | ![alt text][image12]      		| Moderate, As lot of backgroud objects and image not being centered				 				|
