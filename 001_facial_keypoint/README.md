@@ -6,11 +6,11 @@
 
 ## Project Overview
 
-In this project, you’ll combine your knowledge of computer vision techniques and deep learning architectures to build a facial keypoint detection system. Facial keypoints include points around the eyes, nose, and mouth on a face and are used in many applications. These applications include: facial tracking, facial pose recognition, facial filters, and emotion recognition. Your completed code should be able to look at any image, detect faces, and predict the locations of facial keypoints on each face; examples of these keypoints are displayed below.
+This project, we'll combine our knowledge of computer vision techniques and deep learning architectures to build a facial keypoint detection system. Facial keypoints include points around the eyes, nose, and mouth on a face and are used in many applications. These applications include: facial tracking, facial pose recognition, facial filters, and emotion recognition. Your completed code should be able to look at any image, detect faces, and predict the locations of facial keypoints on each face; examples of these keypoints are displayed below.
 
 ![Facial Keypoint Detection][image1]
 
-The project will be broken up into a few main parts in four Python notebooks, **only Notebooks 2 and 3 (and the `models.py` file) will be graded**:
+The project is be broken up into a few main parts in four Python notebooks, **only Notebooks 2 and 3 (and the `models.py` file) will be graded**:
 
 __Notebook 1__ : Loading and Visualizing the Facial Keypoint Data
 
@@ -21,20 +21,12 @@ __Notebook 3__ : Facial Keypoint Detection Using Haar Cascades and your Trained 
 __Notebook 4__ : Fun Filters and Keypoint Uses
 
 
-
-## Project Instructions
-
-All of the starting code and resources you'll need to compete this project are in this Github repository. Before you can get started coding, you'll have to make sure that you have all the libraries and dependencies required to support this project. If you have already created a `cv-nd` environment for [exercise code](https://github.com/udacity/CVND_Exercises), then you can use that environment! If not, instructions for creation and activation are below.
-
-*Note that this project does not require the use of GPU, so this repo does not include instructions for GPU setup.*
-
-
 ### Local Environment Instructions
 
 1. Clone the repository, and navigate to the downloaded folder. This may take a minute or two to clone due to the included image data.
 ```
-git clone https://github.com/udacity/P1_Facial_Keypoints.git
-cd P1_Facial_Keypoints
+git clone https://github.com/amitbcp/deep_learning_projects.git
+cd deep_learning_projects/001_facial_keypoint
 ```
 
 2. Create (and activate) a new environment, named `cv-nd` with Python 3.6. If prompted to proceed with the install `(Proceed [y]/n)` type y.
@@ -80,7 +72,7 @@ All of the data you'll need to train a neural network is in the P1_Facial_Keypoi
 1. Navigate back to the repo. (Also, your source environment should still be activated at this point.)
 ```shell
 cd
-cd P1_Facial_Keypoints
+cd 001_facial_keypoint
 ```
 
 2. Open the directory of notebooks, using the below command. You'll see all of the project files appear in your local environment; open the first notebook and follow the instructions.
@@ -98,79 +90,30 @@ __NOTE:__ While some code has already been implemented to get you started, you w
 Your project will be reviewed against the project [rubric](#rubric).  Review this rubric thoroughly, and self-evaluate your project before submission.  All criteria found in the rubric must meet specifications for you to pass.
 
 
-## Project Submission
+## Project Intuition
 
-When you are ready to submit your project, collect all of your project files -- all executed notebooks, and python files -- and compress them into a single zip archive for upload.
+### 1: What optimization and loss functions did you choose and why?
 
-Alternatively, your submission could consist of only the **GitHub link** to your repository with all of the completed files.
+**Answer**: I preferred MSE loss has we are predicting the key-points over here which is a regression problem when we evaluate with the real key-points. The distance(/difference) between the real and predicted serves as a good measure of the error made by the Model.
 
-<a id='rubric'></a>
-## Project Rubric
-
-### `models.py`
-
-#### Specify the CNN architecture
-|           Criteria           |                                                                           Meets Specifications                                                                            |
-| :--------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Define a CNN in `models.py`. | Define a convolutional neural network with at least one convolutional layer, i.e. self.conv1 = nn.Conv2d(1, 32, 5). The network should take in a grayscale, square image. |
+**Optimization** - I preferred Adam optimizer for it's it's computational effectiveness and better convergence compared to SGD. Since it encapsulates RMSProp & AdaGrad, it brings the effectiveness along with default parameters which suggested good results.
 
 
-### Notebook 2
+#### 2: What kind of network architecture did you start with and how did it change as you tried different architectures? Did you decide to add more convolutional layers or any layers to avoid overfitting the data?
 
-#### Define the data transform for training and test data
-|                                   Criteria                                    |                                                                                                                       Meets Specifications                                                                                                                        |
-| :---------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Define a `data_transform` and apply it whenever you instantiate a DataLoader. | The composed transform should include: rescaling/cropping, normalization, and turning input images into torch Tensors. The transform should turn any input image into a normalized, square, grayscale image and then a Tensor for your model to take it as input. |
+**Answer**: I started with a simple architecture with 2 Convultion , 1 Dropout & 1 FC layer. Though I reached pretty low loss, the model seemed to overfit as it the test key points were almost always constantly shifted from the original points.
 
-#### Define the loss and optimization functions
-|                           Criteria                           |                                               Meets Specifications                                               |
-| :----------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------: |
-| Select a loss function and optimizer for training the model. | The loss and optimization functions should be appropriate for keypoint detection, which is a regression problem. |
+Then I decided to make the network deeper by adding CNN , Batch Normalization on evrey layer, dropout on every layer and a couple of FC at the end to avoid overfitting & proper scaling of weights.
 
 
-#### Train the CNN
+### 3: How did you decide on the number of epochs and batch_size to train your model?
 
-|     Criteria      |                                                                                                               Meets Specifications                                                                                                                |
-| :---------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Train your model. | Train your CNN after defining its loss and optimization functions. You are encouraged, but not required, to visualize the loss over time/epochs by printing it out occasionally and/or plotting the loss over time. Save your best trained model. |
+**Answer**: I decided batch_size based on speed of training with almost same output loss. I decided the epochs on the same basis along with visualizing loss not falling after a certian epoch.
 
+Also, batch size affected the wiggles in the training loss,i.e. low batch sizes made the loss jump around where as larger batch sizes ensured a smoother loss curve.
 
-#### Answer questions about model architecture
+### 4: Choose one filter from your trained CNN and apply it to a test image; what purpose do you think it plays? What kind of feature do you think it detects?
 
-|                              Criteria                               |                                                                     Meets Specifications                                                                     |
-| :-----------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| All questions about model, training, and loss choices are answered. | After training, all 3 questions in notebook 2 about model architecture, choice of loss function, and choice of batch_size and epoch parameters are answered. |
+**Answer**: The above Kernel feature map does not provide any particular shape or feature that it gets activated too. But once we look at the images after the kernel, we can observe that the kernel is highligting humna skin darkly compared to the clothes or surrounding on all the three test images.
 
-
-#### Visualize one or more learned feature maps
-
-|                               Criteria                                |                                                                                                                        Meets Specifications                                                                                                                         |
-| :-------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Apply a learned convolutional kernel to an image and see its effects. | Your CNN "learns" (updates the weights in its convolutional layers) to recognize features and this step requires that you extract at least one convolutional filter from the trained model, apply it to an image, and see what effect this filter has on the image. |
-
-
-#### Answer question about feature visualization
-|                                Criteria                                |                                 Meets Specifications                                  |
-| :--------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: |
-| After visualizing a feature map, answer: what do you think it detects? | This answer should be informed by how the filtered image (from the step above) looks. |
-
-
-
-### Notebook 3
-
-#### Detect faces in a given image
-|                              Criteria                              |                                         Meets Specifications                                         |
-| :----------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------: |
-| Use a haar cascade face detector to detect faces in a given image. | The submission successfully employs OpenCV's face detection to detect all faces in a selected image. |
-
-#### Transform each detected face into an input Tensor
-|                               Criteria                               |                                                                                  Meets Specifications                                                                                   |
-| :------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Turn each detected image of a face into an appropriate input Tensor. | You should transform any face into a normalized, square, grayscale image and then a Tensor for your model to take in as input (similar to what the `data_transform` did in Notebook 2). |
-
-#### Predict and display the keypoints
-|                         Criteria                         |                                                                               Meets Specifications                                                                               |
-| :------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| Predict and display the keypoints on each detected face. | After face detection with a Haar cascade and face pre-processing, apply your trained model to each detected face, and display the predicted keypoints on each face in the image. |
-
-LICENSE: This project is licensed under the terms of the MIT license.
+Now, we can relate that the filter is generic enough and acting on intensity change and edge detection horizontally.
