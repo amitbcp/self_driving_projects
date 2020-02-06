@@ -11,6 +11,7 @@ import pickle
 
 
 class TrainingPipeline:
+
   def __init__(self, model=None, base_path='', epochs=2):
     self.data = []
     self.model = model
@@ -76,7 +77,7 @@ class TrainingPipeline:
         X_train, y_train = np.array(images), np.array(steering_angles)
         yield shuffle(X_train, y_train)
 
-  def split_data(self, ):
+  def split_data(self,):
     train, validation = train_test_split(self.data, test_size=0.2)
     self.training_data, self.validation_data = train, validation
 
@@ -84,8 +85,7 @@ class TrainingPipeline:
     return self.data_generator(data=self.training_data, batch_size=batch_size)
 
   def validation_data_generator(self, batch_size=32):
-    return self.data_generator(
-      data=self.validation_data, batch_size=batch_size)
+    return self.data_generator(data=self.validation_data, batch_size=batch_size)
 
   def run(self):
     self.split_data()

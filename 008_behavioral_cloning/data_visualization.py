@@ -22,24 +22,22 @@ def show_steering(y_train, y_valid, image_name):
   plt.subplots_adjust(left=0, right=0.95, top=0.9, bottom=0.25)
   ax0, ax1 = axes.flatten()
 
-  ax0.hist(
-    y_train,
-    bins=n_classes,
-    histtype='bar',
-    color='blue',
-    rwidth=0.6,
-    label='train')
+  ax0.hist(y_train,
+           bins=n_classes,
+           histtype='bar',
+           color='blue',
+           rwidth=0.6,
+           label='train')
   ax0.set_title('Number of training')
   ax0.set_xlabel('Steering Angle')
   ax0.set_ylabel('Total Image')
 
-  ax1.hist(
-    y_valid,
-    bins=n_classes,
-    histtype='bar',
-    color='red',
-    rwidth=0.6,
-    label='valid')
+  ax1.hist(y_valid,
+           bins=n_classes,
+           histtype='bar',
+           color='red',
+           rwidth=0.6,
+           label='valid')
   ax1.set_title('Number of validation')
   ax1.set_xlabel('Steering Angle')
   ax1.set_ylabel('Total Image')
@@ -83,5 +81,6 @@ if __name__ == "__main__":
   X_valid, y_valid = load_data(training.validation_data)
 
   #show
-  show_steering(
-    y_train, y_train, image_name='augmented_dataset_distribution.png')
+  show_steering(y_train,
+                y_train,
+                image_name='augmented_dataset_distribution.png')
