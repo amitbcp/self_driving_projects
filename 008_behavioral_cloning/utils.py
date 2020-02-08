@@ -28,5 +28,6 @@ def crop_resize(image, shape=None):
     resized = resize(cropped, shape)
   return resized
 
+
 def img_resize(img):
-    return tf.image.resize_images(img, (70, 160))
+  return tf.image.resize_images(img, (70, 160))
